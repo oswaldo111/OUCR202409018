@@ -9,3 +9,4 @@ C:\Users\R5 8500G\Desktop\CSharp proyects\apis practice\todo\CRM.DTOs\obj\Debug\
 C:\Users\R5 8500G\Desktop\CSharp proyects\apis practice\todo\CRM.DTOs\obj\Debug\net6.0\refint\CRM.DTOs.dll
 C:\Users\R5 8500G\Desktop\CSharp proyects\apis practice\todo\CRM.DTOs\obj\Debug\net6.0\CRM.DTOs.pdb
 C:\Users\R5 8500G\Desktop\CSharp proyects\apis practice\todo\CRM.DTOs\obj\Debug\net6.0\ref\CRM.DTOs.dll
+C:\Users\R5 8500G\Desktop\CSharp proyects\apis practice\todo\CRM.DTOs\obj\Debug\net6.0\CRM.DTOs.sourcelink.json
