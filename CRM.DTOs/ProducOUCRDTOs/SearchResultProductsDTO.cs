@@ -24,7 +24,7 @@ namespace CRM.DTOs.ProducOUCRDTOs
             public string DescripcionOUCR { get; set; }
 
             [Display(Name = "Precio")]
-            public double PrecioOUCR { get; set; }
+            public decimal PrecioOUCR { get; set; }
         }
     }
 }

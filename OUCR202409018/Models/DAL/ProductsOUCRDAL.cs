@@ -21,7 +21,7 @@ namespace OUCR202409018.Models.DAL
 
         public async Task<ProductsOUCR> GetById(int id)
         {
-            var producto = await _context.productsOUCRs.FirstOrDefaultAsync(s => s.Id == id);
+            var producto = await _context.ProductsOUCR.FirstOrDefaultAsync(s => s.Id == id);
             return producto != null ? producto: new ProductsOUCR();
         }
 
@@ -30,14 +30,15 @@ namespace OUCR202409018.Models.DAL
             int result = 0;
 
             var productoUpdate = await GetById(productsOUCR.Id);
-
             if (productoUpdate.Id != 0) 
             {
-                productsOUCR.NombreOUCR = productoUpdate.NombreOUCR;
-                productsOUCR.DescripcionOUCR = productsOUCR.DescripcionOUCR;
-                productsOUCR.PrecioOUCR = productsOUCR.PrecioOUCR;
+               
+                productoUpdate.NombreOUCR = productsOUCR.NombreOUCR;
+                productoUpdate.DescripcionOUCR = productsOUCR.DescripcionOUCR;
+                productoUpdate.PrecioOUCR = productsOUCR.PrecioOUCR;
                 result = await _context.SaveChangesAsync();
             }
+            
             return result;
         }
 
@@ -48,7 +49,7 @@ namespace OUCR202409018.Models.DAL
 
             if (productoDelete.Id > 0 )
             {
-                _context.productsOUCRs.Remove(productoDelete);
+                _context.ProductsOUCR.Remove(productoDelete);
                 result = await _context.SaveChangesAsync();
             }
             return result;
@@ -56,11 +57,16 @@ namespace OUCR202409018.Models.DAL
 
         private IQueryable<ProductsOUCR> Query(ProductsOUCR products)
         {
-            var query = _context.productsOUCRs.AsQueryable();   
+            var query = _context.ProductsOUCR.AsQueryable();   
             if(!string.IsNullOrWhiteSpace(products.NombreOUCR))
                 query = query.Where(s => s.NombreOUCR.Contains(products.NombreOUCR));
 
             return query;
+        }
+
+        public async Task<int> CountSearch(ProductsOUCR products)
+        {
+            return await Query(products).CountAsync();
         }
 
         public async Task<List<ProductsOUCR>> Search(ProductsOUCR products, int take = 10, int skip = 0)

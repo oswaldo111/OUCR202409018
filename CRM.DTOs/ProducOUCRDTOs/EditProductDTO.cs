@@ -11,6 +11,16 @@ namespace CRM.DTOs.ProducOUCRDTOs
     {
         public EditProductDTO(GetIdResultProductDTO getIdResultProduct)
         {
+            Id = getIdResultProduct.Id;
+            NombreOUCR = getIdResultProduct.NombreOUCR;
+            DescripcionOUCR = getIdResultProduct.DescripcionOUCR;
+            PrecioOUCR = getIdResultProduct.PrecioOUCR;
+        }
+
+        public EditProductDTO()
+        {
+            NombreOUCR = string.Empty;
+            DescripcionOUCR= string.Empty;
             
         }
 
@@ -28,7 +38,7 @@ namespace CRM.DTOs.ProducOUCRDTOs
 
         [Display(Name = "Precio")]
         [Required(ErrorMessage = "el campo es obligatorio")]
-        public double PrecioOUCR { get; set; }
+        public decimal PrecioOUCR { get; set; }
         
     }   
 

@@ -7,6 +7,6 @@ namespace OUCR202409018.Models.DAL
     {
         public CRMContext(DbContextOptions<CRMContext>options) : base(options) { }
 
-        public DbSet<ProductsOUCR> productsOUCRs { get; set; }
+        public DbSet<ProductsOUCR> ProductsOUCR { get; set; }
     }
 }

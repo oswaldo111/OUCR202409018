@@ -21,7 +21,7 @@ namespace CRM.DTOs.ProducOUCRDTOs
 
         [Display(Name = "Preicio")]
         [Required(ErrorMessage = "el campo es obligatorio")]
-        public double PrecioOUCR { get; set; }
+        public decimal PrecioOUCR { get; set; }
     
     }
 }

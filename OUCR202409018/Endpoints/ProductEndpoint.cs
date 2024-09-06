@@ -17,17 +17,39 @@ namespace OUCR202409018.Endpoints
                 };
 
                 var productos = new List<ProductsOUCR>();
+                int countrow = 0;
+                if (prodctDTO.SendRowCount == 2)
+                {
+                    productos = await productDAL.Search(Producto, skip: prodctDTO.Skip, take: prodctDTO.Take);
 
-                productos = await productDAL.Search(Producto, skip: prodctDTO.Skip, take: prodctDTO.Take);
+                    if (productos.Count > 0)
+                        countrow = await productDAL.CountSearch(Producto);
+                }
+                else
+                {
+                    productos = await productDAL.Search(Producto, skip: prodctDTO.Skip, take: prodctDTO.Take);
+                }
 
-                var productoResult = new SearchResultProductsDTO
+                var productoresult = new SearchResultProductsDTO
                 {
                     Data = new List<SearchResultProductsDTO.ProductoOUCRDTO>(),
-                    CountRow = 1
+                    CountRow = countrow
                 };
 
-                return productoResult;
-            });
+                productos.ForEach(s =>
+                {
+                    productoresult.Data.Add(new SearchResultProductsDTO.ProductoOUCRDTO
+                    {
+                        Id = s.Id,
+                        NombreOUCR = s.NombreOUCR,
+                        DescripcionOUCR = s.DescripcionOUCR,
+                        PrecioOUCR = s.PrecioOUCR
+                    });
+                });
+                return productoresult;
+            }); 
+                
+            
 
             app.MapGet("/product/{id}", async (int id, ProductsOUCRDAL productoDAL) =>
             {
@@ -67,6 +89,7 @@ namespace OUCR202409018.Endpoints
 
             app.MapPut("/product", async (EditProductDTO productoDTO, ProductsOUCRDAL productoDAL) =>
             {
+
                 var producto = new ProductsOUCR
                 {
                     Id = productoDTO.Id,
@@ -75,10 +98,13 @@ namespace OUCR202409018.Endpoints
                     PrecioOUCR = productoDTO.PrecioOUCR
                 };
 
+                Console.WriteLine(producto.Id + "{}{}{}{}{}{}");
                 int result = await productoDAL.Edit(producto);
-
-                if (result != 0) return Results.Ok(result);
-                else return Results.StatusCode(500);
+                Console.WriteLine(result + "!!!!!!!!!!!!!");
+                if (result != 0) 
+                    return Results.Ok(result);
+                else 
+                    return Results.StatusCode(500);
             });
 
             app.MapDelete("/product/{id}", async (int id, ProductsOUCRDAL productoDAL) =>

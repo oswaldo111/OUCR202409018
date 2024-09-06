@@ -8,6 +8,6 @@
 
         public string DescripcionOUCR { get; set; }
 
-        public double PrecioOUCR {  get; set; }
+        public decimal PrecioOUCR {  get; set; }
     }
 }
