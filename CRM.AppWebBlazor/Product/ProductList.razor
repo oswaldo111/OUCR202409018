@@ -11,18 +11,18 @@
         <div class="col-3">
             <div class="form-group">
                 <label for="Nombre_Like">nombre: </label>
-              @*   <InputText class="form-group" @bind-Value+="searchQuery.Nombre_Like" /> *@
+                <InputText class="form-group" @bind-Value="searchQuery.Nombre_Like" /> 
             </div>
         </div>
         <div class="col-2">
             <div class="form-group">
                 <label for="Take">cant x</label>
-           @*        <select class="form-control" @bind="searchQuery.Take">
+                   <select class="form-control" @bind="searchQuery.Take">
                 @for (var i = 10; i < 1000; i += 10)
                 {
                     <option value="@i">@i</option>
                 }
-            </select> *@
+            </select> 
             </div>
         </div>
     </div>

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CRM.AppWebBlazor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9197807e8bc1680685a52f11b453f904c1898a98")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c205570fdc4fb17d3bf7e219e3b61ad68c8f8837")]
 [assembly: System.Reflection.AssemblyProductAttribute("CRM.AppWebBlazor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CRM.AppWebBlazor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
