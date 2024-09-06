@@ -1,0 +1,89 @@
+﻿
+@page "/create-product"
+
+@using CRM.DTOs.ProducOUCRDTOs;
+@using Microsoft.AspNetCore.Components;
+@using System.ComponentModel.DataAnnotations
+
+@using Microsoft.AspNetCore.Components.Forms;
+@using CRM.AppWebBlazor.Data;
+
+@if (isSuccess == false && isError == false)
+{
+    <h3>Crear Nuevo Cliente</h3>
+
+    <EditForm Model="producto" OnValidSubmit="Create">
+        <DataAnnotationsValidator />
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="NombreOUCR">Nombre:</label>
+                    <InputText class="form-control" id="NombreOUCR" @bind-Value="producto.NombreOUCR" />
+                    <ValidationMessage For="() => producto.NombreOUCR" />
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="DescrionoOUCR">descricpion:</label>
+                    <InputText class="form-control" id="DescripcionoOUCR" @bind-Value="producto.DescripcionoOUCR" />
+                    <ValidationMessage For="() => producto.DescripcionoOUCR" />
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="PrecioOUCR">precio:</label>
+                    <InputNumber class="form-control" id="PrecioOUCR" @bind-Value="producto.PrecioOUCR" />
+                    <ValidationMessage For="() => producto.PrecioOUCR" />
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <NavLink href="/product-list" class="btn btn-secondary">Cancelar</NavLink>
+                </div>
+            </div>
+        </div>
+    </EditForm>
+   
+}
+else if (isSuccess)
+{
+    producto = new CreateProducDTO();
+    isError = false;
+    <p class="alert alert-success">producto creado con éxito.</p>
+    <button type="button" @onclick="GoCreate" class="btn btn-primary">Ir a crear</button>
+    <NavLink href="/product-list" class="btn btn-primary">Ir a buscar producto</NavLink>
+}
+else if (isError)
+{
+    <p class="alert alert-success">sucedio un error al intentar registrar.</p>
+    <NavLink href="/product-list" class="btn btn-primary">Aceptar</NavLink>
+}
+
+
+@code {
+    [Inject]
+    ProductService productoService { get; set; }
+
+
+    CreateProducDTO producto = new CreateProducDTO();
+    bool isSuccess = false;
+    bool isError = false;
+    private async Task Create()
+    {
+        // Llama al método Create de productoService para crear un cliente
+        int result = await productoService.Create(producto);
+        if (result != 0) // Comprueba si el resultado de la operación es diferente de 0 (indicando éxito)
+            isSuccess = true; // Establece isSuccess en true si la operación fue exitosa
+        else
+            isError = true; // Establece isError en true si la operación resultó en un error
+    }
+
+    private void GoCreate()
+    {
+        isSuccess = false; // Restablece isSuccess a false, utilizado para limpiar el estado de éxito
+        isError = false;  // Restablece isError a false, utilizado para limpiar el estado de error
+    }
+
+}

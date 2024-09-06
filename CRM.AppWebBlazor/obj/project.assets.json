@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "CRM.DTOs/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/CRM.DTOs.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CRM.DTOs.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "CRM.DTOs/1.0.0": {
+      "type": "project",
+      "path": "../CRM.DTOs/CRM.DTOs.csproj",
+      "msbuildProject": "../CRM.DTOs/CRM.DTOs.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "CRM.DTOs >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\R5 8500G\\.nuget\\packages\\": {}
@@ -34,7 +53,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\R5 8500G\\Desktop\\CSharp proyects\\apis practice\\todo\\CRM.DTOs\\CRM.DTOs.csproj": {
+              "projectPath": "C:\\Users\\R5 8500G\\Desktop\\CSharp proyects\\apis practice\\todo\\CRM.DTOs\\CRM.DTOs.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

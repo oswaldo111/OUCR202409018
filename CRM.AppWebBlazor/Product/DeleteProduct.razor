@@ -1,0 +1,82 @@
+﻿@page "/delete-product/{id:int}"
+
+@using CRM.DTOs.ProducOUCRDTOs;
+@using Microsoft.AspNetCore.Components.Forms;
+@using CRM.AppWebBlazor.Data;
+
+<h3>Eliminar producto</h3>
+@if (isSuccess == false && isError == false)
+{
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group">
+                <label for="NombreOUCR">Nombre:</label>
+                <input type="text" class="form-control" disabled @bind="producto.NombreOUCR" />
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label for="DescripcionOUCR">Descripcion:</label>
+                <input type="text" class="form-control" disabled @bind="producto.DescripcionOUCR" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="Precio">Precio:</label>
+                <input type="number" class="form-control" disabled @bind="producto.PrecioOUCR" />
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-12">
+            <button class="btn btn-primary" @onclick="async () => await Delete()">Eliminar</button>
+            <NavLink href="/customer-list" class="btn btn-secondary">Cancelar</NavLink>
+        </div>
+    </div>
+}
+else if (isSuccess)
+{
+    <p class="alert alert-success">Cliente se elimino con éxito.</p>
+    <NavLink href="/customer-list" class="btn btn-primary">Aceptar</NavLink>
+}
+
+
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    // Inyección de dependencia de CustomerService para acceder a los servicios relacionados con los clientes
+    [Inject]
+    ProductService productService { get; set; }
+
+    // Declaración e inicialización de un objeto "customer" para almacenar la información del cliente
+    GetIdResultProductDTO producto = new GetIdResultProductDTO();
+
+    // Declaración de variables booleanas para manejar el estado de éxito y error
+    bool isSuccess = false;
+    bool isError = false;
+
+    // Método que se llama cuando se inicializa el componente
+    protected override async Task OnInitializedAsync()
+    {
+        // Realiza una llamada asincrónica para obtener la información del cliente por su Id
+        producto = await productService.GetById(Id);
+    }
+
+    // Método para eliminar el cliente
+    private async Task Delete()
+    {
+        // Realiza una llamada asincrónica para eliminar el cliente por su Id
+        int result = await productService.Delete(producto.Id);
+
+        // Verifica si el resultado de la eliminación es diferente de cero (éxito) o igual a cero (error)
+        if (result != 0)
+            isSuccess = true;
+        else
+            isError = true;
+    }
+}

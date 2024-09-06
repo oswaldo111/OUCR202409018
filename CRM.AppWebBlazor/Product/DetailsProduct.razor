@@ -1,0 +1,59 @@
+﻿@page "/product-details/{id:int}"
+
+@using CRM.DTOs.ProducOUCRDTOs;
+@using Microsoft.AspNetCore.Components.Forms;
+@using CRM.AppWebBlazor.Data;
+
+<h3>Ver producto</h3>
+<div class="row">
+    <div class="col-4">
+        <div class="form-group">
+            <label for="NombreOUCR">Nombre:</label>
+            <input type="text" class="form-control" disabled @bind="producto.NombreOUCR" />
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+            <label for="DescripcionoOUCR">descripcion:</label>
+            <input type="text" class="form-control" disabled @bind="producto.DescripcionOUCR" />
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="form-group">
+            <label for="Address">precio:</label>
+            <input type="number" class="form-control" @bind="producto.PrecioOUCR" />
+        </div>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-12">
+        <NavLink href="/customer-list" class="btn btn-primary">Ir a buscar clientes</NavLink>
+    </div>
+</div>
+
+
+@code {
+    // Parámetro para recibir el ID del cliente desde la llamada al componente
+    [Parameter]
+    public int Id { get; set; }
+
+    // Inyección de dependencia de CustomerService para acceder a sus métodos
+    [Inject]
+    ProductService productoService { get; set; }
+
+    // Creación de una instancia de GetIdResultCustomerDTO para almacenar los datos del cliente
+    GetIdResultProductDTO producto = new GetIdResultProductDTO();
+
+   
+  
+    protected override async Task OnInitializedAsync()
+    {
+        // En el momento de inicialización del componente, llama al método GetById de
+        //  CustomerService para obtener los datos del cliente con el ID proporcionado
+        producto = await productoService.GetById(Id);
+    }
+
+}
