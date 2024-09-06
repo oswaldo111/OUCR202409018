@@ -5,7 +5,9 @@ VisualStudioVersion = 17.11.35219.272
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OUCR202409018", "OUCR202409018.csproj", "{925B4E06-BC9B-4424-9480-05CA08302B7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRM.DTOs", "..\CRM.DTOs\CRM.DTOs.csproj", "{3CA531F2-219F-4244-88E3-953E655D5650}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CRM.DTOs", "..\CRM.DTOs\CRM.DTOs.csproj", "{3CA531F2-219F-4244-88E3-953E655D5650}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRM.AppMVC", "..\CRM.AppMVC\CRM.AppMVC.csproj", "{54ADBFEA-4E51-4DB1-AE60-B81C2E89EF49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{3CA531F2-219F-4244-88E3-953E655D5650}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CA531F2-219F-4244-88E3-953E655D5650}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CA531F2-219F-4244-88E3-953E655D5650}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54ADBFEA-4E51-4DB1-AE60-B81C2E89EF49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54ADBFEA-4E51-4DB1-AE60-B81C2E89EF49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54ADBFEA-4E51-4DB1-AE60-B81C2E89EF49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54ADBFEA-4E51-4DB1-AE60-B81C2E89EF49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

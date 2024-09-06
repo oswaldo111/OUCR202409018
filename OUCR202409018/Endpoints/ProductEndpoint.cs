@@ -7,6 +7,8 @@ namespace OUCR202409018.Endpoints
 {
     public static class ProductEndpoint
     {
+        private static int countrow;
+
         public static void AddProductEndpoints(this WebApplication app)
         {
             app.MapPost("/product/search", async (SearchQueryProductDTO prodctDTO, ProductsOUCRDAL productDAL) =>
@@ -17,13 +19,13 @@ namespace OUCR202409018.Endpoints
                 };
 
                 var productos = new List<ProductsOUCR>();
-                int countrow = 0;
+                int CountRow = 0;
                 if (prodctDTO.SendRowCount == 2)
                 {
                     productos = await productDAL.Search(Producto, skip: prodctDTO.Skip, take: prodctDTO.Take);
 
                     if (productos.Count > 0)
-                        countrow = await productDAL.CountSearch(Producto);
+                        CountRow = await productDAL.CountSearch(Producto);
                 }
                 else
                 {
@@ -33,7 +35,7 @@ namespace OUCR202409018.Endpoints
                 var productoresult = new SearchResultProductsDTO
                 {
                     Data = new List<SearchResultProductsDTO.ProductoOUCRDTO>(),
-                    CountRow = countrow
+                    CountRow = CountRow
                 };
 
                 productos.ForEach(s =>
@@ -46,6 +48,7 @@ namespace OUCR202409018.Endpoints
                         PrecioOUCR = s.PrecioOUCR
                     });
                 });
+                
                 return productoresult;
             }); 
                 
@@ -98,10 +101,9 @@ namespace OUCR202409018.Endpoints
                     PrecioOUCR = productoDTO.PrecioOUCR
                 };
 
-                Console.WriteLine(producto.Id + "{}{}{}{}{}{}");
+             
                 int result = await productoDAL.Edit(producto);
-                Console.WriteLine(result + "!!!!!!!!!!!!!");
-                if (result != 0) 
+                 if (result != 0) 
                     return Results.Ok(result);
                 else 
                     return Results.StatusCode(500);
